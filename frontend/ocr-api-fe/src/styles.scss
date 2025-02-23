@@ -5,6 +5,21 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+.v-space-half {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.v-space-1 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.v-space-2 {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 //.g-background-color {
 //  background-color: var(--mat-sys-surface) !important;
 //}

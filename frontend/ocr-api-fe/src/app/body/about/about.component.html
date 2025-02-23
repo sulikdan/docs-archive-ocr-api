@@ -1,1 +1,31 @@
-<p>about works!</p>
+<div style="display: flex; flex-direction: column; justify-content: center;">
+  <h1 style="align-self: center">About</h1>
+
+  <p>This is simplified Frontend for OCR-API, so users won't need whole stack to use OCR-API. Like separate Frontend and
+    Backend of management app stack.</p>
+
+  <h3>Application tab options:</h3>
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <span matListItemTitle>
+        <a routerLink="../img-upload">Upload Img</a>
+      </span>
+      <span matListItemLine>Should be used to upload classic non-pdf, image files.(Expected 1 page files)</span>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <span matListItemTitle>
+        <a routerLink="../pdf-upload">Upload PDF</a>
+      </span>
+      <span matListItemLine>Should be used to upload PDF files 1+ pages.</span>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <span matListItemTitle>
+        <a routerLink="../manage">File manager</a>
+      </span>
+      <span matListItemLine>To manage and see already sent files.</span>
+    </mat-list-item>
+  </mat-list>
+
+
+</div>
+

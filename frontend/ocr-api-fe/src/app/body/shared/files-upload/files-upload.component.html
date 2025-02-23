@@ -7,40 +7,69 @@
     </mat-toolbar>
   }
 
-  <mat-form-field>
-    <div>
-      <mat-toolbar>
-        <input matInput [value]="fileName"/>
+  <div class="v-space-1"></div>
 
-        <button mat-flat-button color="primary" [disabled]="!currentFile" (click)="uploadFile()">Upload</button>
-      </mat-toolbar>
+  <div class="drop-area-container" appDragNDrop (fileDropped)="onFilesDropped($event)">
+    <input hidden type="file" #fileDropRef id="fileDropRef" multiple (change)="fileSelectedHandler($event)">
+    <mat-icon class="drag-and-drop" aria-label="drag&drop" fontIcon="backup"></mat-icon>
 
-      <input type="file" id="filesInput" (change)="selectFiles($event)" name="filesInput" multiple>
+    <div class="v-space-1"></div>
 
-    </div>
+    <div>Drag and drop files here</div>
 
-  </mat-form-field>
+    <div class="v-space-half"></div>
+
+    <div>or</div>
+
+    <div class="v-space-half"></div>
+
+    <button mat-raised-button (click)="fileDropRef.click()" [disabled]="areFilesBeingUploaded">click to select</button>
+  </div>
+
+  <div class="v-space-1"></div>
 
 
-  @if(message) {
+
+  @if (message) {
     <div class="message">
-      {{message}}
+      {{ message }}
     </div>
   }
 
 
   <mat-card class="example-card">
-    <mat-card-header>List of Files</mat-card-header>
+    <mat-card-header>
+      <h2>List of Files:</h2>
+    </mat-card-header>
 
     <mat-card-content>
       <mat-list role="list">
-        @for(file of fileInfos | async ; track file.name) {
+        @for (file of selectedFiles; track file.name) {
           <mat-list-item role="listitem">
-            <a href="{{file.url}}">{{file.name}}</a>
+            <div class="row">
+              <div>{{ file.name }}</div>
+              <button mat-mini-fab (click)="deleteFile(file)" style="transform: scale(0.75);">
+                <mat-icon fontIcon="delete" ></mat-icon>
+              </button>
+            </div>
           </mat-list-item>
+        } @empty {
+          No file(s) were selected.
         }
       </mat-list>
     </mat-card-content>
   </mat-card>
+
+  <div class="v-space-1"></div>
+
+
+  <div class="actions">
+
+    @if (selectedFiles && selectedFiles.length > 0) {
+      <button mat-flat-button color="warn" [disabled]="false" (click)="clearSelectedFiles()">Clear selection</button>
+    }
+    <button mat-flat-button color="primary" [disabled]="!currentFile" (click)="uploadFile()">Upload</button>
+
+  </div>
 
 </div>
